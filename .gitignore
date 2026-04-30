@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.autopilot/
+*.log
+.DS_Store
+bun.lockb

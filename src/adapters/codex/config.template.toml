@@ -1,0 +1,15 @@
+# Codex inline-hooks configuration. Either keep this file or move the
+# [[hooks]] tables into an existing config.toml. The hooks.json file in
+# this directory is an alternative form Codex also accepts.
+
+[[hooks]]
+event = "Stop"
+command = "bun \"{{AUTOPILOT_PATH}}/src/adapters/codex/stop-hook.ts\""
+timeout_ms = 30000
+
+[mcp_servers.autopilot]
+command = "bun"
+args = ["{{AUTOPILOT_PATH}}/src/mcp/server.ts"]
+
+[mcp_servers.autopilot.env]
+AUTOPILOT_CWD = "{{PROJECT_CWD}}"

@@ -1,0 +1,9 @@
+.github/
+.autopilot/
+tests/
+node_modules/
+bun.lock
+biome.json
+tsconfig.json
+.gitignore
+.npmignore

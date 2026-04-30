@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "command": "bun \"{{AUTOPILOT_PATH}}/src/adapters/codex/stop-hook.ts\"",
+        "timeout_ms": 30000
+      }
+    ]
+  }
+}

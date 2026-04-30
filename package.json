@@ -1,0 +1,53 @@
+{
+  "name": "autopilot",
+  "version": "0.1.0",
+  "description": "Loop-keeper for AI coding agents — plans into phases, verifies each, auto-continues until done.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "autopilot": "./src/cli/index.ts"
+  },
+  "files": ["src/", "package.json", "README.md", "LICENSE"],
+  "keywords": [
+    "ai",
+    "coding-agent",
+    "claude-code",
+    "codex",
+    "cursor",
+    "mcp",
+    "model-context-protocol",
+    "autopilot",
+    "automation",
+    "agent-loop"
+  ],
+  "homepage": "https://github.com/Mohamad44p/autopilot#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohamad44p/autopilot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mohamad44p/autopilot/issues"
+  },
+  "scripts": {
+    "dev": "bun src/mcp/server.ts",
+    "serve": "bun src/mcp/server.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "check": "bun run typecheck && bun run lint && bun test",
+    "prepublishOnly": "bun run check"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/bun": "latest",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  }
+}

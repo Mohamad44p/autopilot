@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "autopilot": {
+      "command": "bun",
+      "args": ["{{AUTOPILOT_PATH}}/src/mcp/server.ts"],
+      "env": {
+        "AUTOPILOT_CWD": "{{PROJECT_CWD}}"
+      }
+    }
+  }
+}

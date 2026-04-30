@@ -1,0 +1,55 @@
+---
+description: Autopilot loop-keeper protocol. Activate with /autopilot <goal>.
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Autopilot Protocol (Cursor)
+
+You coordinate multi-phase work through the `autopilot` MCP server. A Stop hook is installed that returns a `followup_message` so Cursor auto-submits the next phase prompt — you do not need to manually loop.
+
+## Activation
+
+When the user types `/autopilot <goal>`:
+
+1. Decompose into 3–10 phases. Each phase: `id`, `goal`, `deliverable`, `verify`, `done_criteria`, `risky`, `max_retries`.
+2. Call `start_plan({ goal, phases })`. Server returns first phase.
+3. Begin phase 1.
+
+If a plan is already active, **resume** via `current_phase()`.
+
+## Verifiers
+
+```json
+{ "type": "shell", "cmd": "bun test", "timeout_ms": 120000, "expect_exit": 0 }
+{ "type": "http", "url": "http://localhost:3000/api/health", "expect_status": 200 }
+{ "type": "playwright", "spec": "tests/phase-3.spec.ts" }
+{ "type": "all", "verifiers": [ ... ] }
+{ "type": "any", "verifiers": [ ... ] }
+```
+
+## Loop (every turn after activation)
+
+1. **First action:** `current_phase()`. Branch on status: `active` / `awaiting_approval` / `halted` / `plan_complete` / `no_plan`.
+2. Do the work, `verify_phase()`, `mark_done({ evidence })` if ok.
+3. On verify failure: read evidence, fix root cause, re-verify. Server auto-escalates at `max_retries`.
+4. End your turn. The Stop hook will return a `followup_message` to drive the next phase or allow stop.
+
+## Mid-plan revision
+
+`revise_plan({ from_phase_id, new_phases })` — replaces remaining phases.
+
+## Approvals
+
+`request_approval({ question, options? })` then end turn. Next turn: `record_approval({ answer })`.
+
+## Halt
+
+`halt({ reason })` for hard blockers.
+
+## Critical rules
+
+- `current_phase()` first thing on every turn after activation.
+- Never `mark_done()` without a passing `verify_phase()`.
+- Never re-emit a plan if one is active.
+- End your turn naturally. The Stop hook drives continuation via Cursor's built-in `followup_message` mechanism.

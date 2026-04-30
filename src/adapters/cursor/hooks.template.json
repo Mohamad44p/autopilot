@@ -1,0 +1,8 @@
+{
+  "hooks": {
+    "stop": {
+      "command": "bun \"{{AUTOPILOT_PATH}}/src/adapters/cursor/stop-hook.ts\"",
+      "loop_limit": 100
+    }
+  }
+}

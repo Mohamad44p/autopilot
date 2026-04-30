@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun \"{{AUTOPILOT_PATH}}/src/adapters/claude-code/stop-hook.ts\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun \"{{AUTOPILOT_PATH}}/src/adapters/claude-code/session-start-hook.ts\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
