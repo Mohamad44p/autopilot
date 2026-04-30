@@ -15,13 +15,13 @@ Works in **Claude Code**, **Codex CLI**, and **Cursor**.
 Requires [Bun](https://bun.sh) ≥ 1.1.0.
 
 ```bash
-bun add -g @mohammad44p/autopilot
+bun add -g autopilot-mode
 ```
 
 Or run without installing:
 
 ```bash
-bunx @mohammad44p/autopilot init claude
+bunx autopilot-mode init claude
 ```
 
 The CLI binary is named `autopilot` — once installed you can run `autopilot ...` directly.

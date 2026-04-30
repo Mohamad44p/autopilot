@@ -1,6 +1,6 @@
 {
-  "name": "@mohammad44p/autopilot",
-  "version": "0.1.0",
+  "name": "autopilot-mode",
+  "version": "0.1.1",
   "description": "Loop-keeper for AI coding agents — plans into phases, verifies each, auto-continues until done.",
   "license": "MIT",
   "type": "module",
